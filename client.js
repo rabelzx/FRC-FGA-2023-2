@@ -1,11 +1,12 @@
 const socket = io.connect("http://localhost:5000");
 
-function joinRoom() {
-  const room = document.getElementById("roomInput").value;
-  socket.emit("join", { room: room });
+function joinTheme() {
+  // Obtenha o valor selecionado no seletor de tema
+  const theme = document.getElementById("themeSelector").value;
+  socket.emit("join", { theme: theme });
 }
 
-socket.on("room_joined", (room) => {
+socket.on("theme_joined", (theme) => {
   navigator.mediaDevices
     .getUserMedia({ video: true, audio: true })
     .then((stream) => {
@@ -21,7 +22,7 @@ socket.on("room_joined", (room) => {
         .then((offer) => peerConnection.setLocalDescription(offer))
         .then(() =>
           socket.emit("offer", {
-            room: room,
+            theme: theme,
             offer: peerConnection.localDescription,
           })
         )
@@ -30,7 +31,7 @@ socket.on("room_joined", (room) => {
       peerConnection.onicecandidate = (event) => {
         if (event.candidate) {
           socket.emit("ice_candidate", {
-            room: room,
+            theme: theme,
             candidate: event.candidate,
           });
         }
@@ -44,7 +45,7 @@ socket.on("room_joined", (room) => {
           .then((answer) => peerConnection.setLocalDescription(answer))
           .then(() =>
             socket.emit("answer", {
-              room: room,
+              theme: theme,
               answer: peerConnection.localDescription,
             })
           )

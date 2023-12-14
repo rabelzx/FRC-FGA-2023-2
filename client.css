@@ -9,17 +9,27 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
   }
   
-  .container input {
-    margin-top: 20px;
-    padding: 10px;
-    font-size: 1rem;
+  .container .header{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 20px;
+    margin: 10px
   }
   
-  .container button {
+  .container .header select{
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px 40px;
+    font-size: 1em;
+    cursor: pointer;
+  }
+
+  .container .header button {
     margin: 20px 0px;
     padding: 10px 20px;
     border: none;
@@ -30,6 +40,8 @@
     font-weight: 500;
     cursor: pointer;
     border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
   }
   
   .container p {
@@ -49,7 +61,6 @@
   }
   
   .container .video-area video {
-    width: 100%;
     max-width: 450px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
