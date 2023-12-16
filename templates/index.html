@@ -1,0 +1,78 @@
+<html lang="en"> 
+    <head> 
+        <title>index</title> 
+        <link rel="stylesheet" href="../static/style.css"> 
+        <script src="https://cdn.socket.io/4.2.0/socket.io.js"></script>
+    </head> 
+  
+    <body bgcolor="#e6ffee"> 
+        <div class="one"> 
+            <div class="two"> 
+                <h1>Side Bar</h1> 
+                <ul> 
+                    <li class="active"><a href="{{url_for('index')}}">Index</a></li> 
+                    <li><a href="{{url_for('display')}}">Display</a></li> 
+                    <li><a href="{{url_for('update')}}">Update</a></li> 
+                    <li><a href="{{url_for('logout')}}">Log out</a></li> 
+                </ul>  
+            </div> 
+            <div class="content" align="center"> 
+              <div class="topbar"> 
+                  <h2>Welcome!! You are in Index Page!! </h2>                         
+              </div></br></br> 
+              <div>
+                <label for="room">Choose a Room:</label>
+                <select id="room" onchange="changeRoom()">
+                    <option value="room1">Jogos(Chat Teclado)</option>
+                    <option value="room2">Esportes(Chat Teclado)</option>
+                    <option value="room3">Programação(Chat Teclado)</option>
+                </select>
+              </div>
+              <ul id="users"></ul>
+              <ul id="messages"></ul>
+              <input id="message_input" autocomplete="off" />
+              <button onclick="sendMessage()">Send</button> 
+            </div> 
+        </div> 
+      <script>
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+        var clientId;
+
+        socket.on('connect', function() {
+            // No need to set clientId here; the server will send the correct ID
+        });
+
+        socket.on('users', function(data) {
+            var ul = document.getElementById('users');
+            ul.innerHTML = '';
+            data.clients.forEach(function(client) {
+                var li = document.createElement('li');
+                li.appendChild(document.createTextNode(`${client.id} entrou no chat`));
+                ul.appendChild(li);
+            });
+        });
+
+        socket.on('message', function(data) {
+            var ul = document.getElementById('messages');
+            var li = document.createElement('li');
+            li.appendChild(document.createTextNode(`${data.username}: ${data.message}`));
+            ul.appendChild(li);
+        });
+
+        function sendMessage() {
+            var messageInput = document.getElementById('message_input');
+            var message = messageInput.value;
+            if (message.trim() !== '') {
+                socket.emit('message', { message: message });
+                messageInput.value = '';
+            }
+        }
+
+        function changeRoom() {
+            var roomSelect = document.getElementById('room');
+            var selectedRoom = roomSelect.options[roomSelect.selectedIndex].value;
+            socket.emit('join_room', { room: selectedRoom });
+        }
+    </script>
+    </body> 
+</html> 
