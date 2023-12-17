@@ -1,143 +1,103 @@
-.logincontent{ 
-  margin: 0 auto; 
-  height: 500px; 
-  width: 400px; 
-  background-color: #e6ffee;  
-  border-radius: 10px; 
-} 
-
-.registercontent{ 
-  margin: 0 auto; 
-  height: 720px; 
-  width: 400px; 
-  background-color: #e6ffee;  
-  border-radius: 10px; 
-} 
-
-.logintop{ 
-  height: 60px; 
-  width: 400px; 
-  background-color: #009933;  
-  color: #ffffff; 
-} 
-
-.registertop{ 
-  height: 60px; 
-  width: 400px; 
-  background-color: #009933;  
-  color: #ffffff; 
-} 
-
-.textbox{ 
-  padding: 10px 40px; 
-  background-color: #009933;  
-  border-radius: 10px; 
-} 
-
-::placeholder { 
-  color: #FFFFFF; 
-  opacity: 1; 
-  font-style: oblique; 
-  font-weight: bold; 
-} 
-
-.btn { 
-  padding: 10px 40px; 
-  background-color: #009933;  
-  color: #FFFFFF; 
-  font-style: oblique; 
-  font-weight: bold; 
-  border-radius: 10px; 
-} 
-
-.worddark{ 
-  color: #009933; 
-  font-style: oblique; 
-  font-weight: bold; 
-} 
-
-.wordlight{ 
-  color: #FFFFFF; 
-  font-style: oblique; 
-  font-weight: bold; 
-} 
-
 *{ 
-  margin: 0; 
-  padding: 0; 
-  box-sizing: border-box; 
-  list-style: none; 
-  text-decoration: none; 
-  font-family: 'Josefin Sans', sans-serif; 
-} 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    list-style: none; 
+    text-decoration: none; 
+    font-family: 'Josefin Sans', sans-serif; 
+  } 
 
-.one{ 
-  display: flex; 
-  position: relative; 
-} 
 
-.one .two{ 
-   width: 225px; 
-  height: 100%; 
-  background: #009933; 
-  padding: 30px 0px; 
-  position: fixed; 
-} 
+main{
+    display: flex;
+    justify-content: space-between;
+    background-color: #2c2f33   ;
+    height: 100vh;
+    color: #fff;
+}
 
-.one .two h1{ 
-  color: #fff; 
-  text-transform: uppercase; 
-  text-align: center; 
-  margin-bottom: 30px; 
-  font-style: oblique; 
-  font-weight: bold; 
-} 
-        
-.one .two h2{ 
-  color: #fff; 
-  text-align: center; 
-} 
-        
-.one .two .active{ 
-   background: #0a8032; 
-} 
+main .left{
+    padding: 1rem 2rem;
+    background-color: #23272a;
+    width: max(25%, 350px);
+    height: 100%;
+}
 
-.one .two ul li{ 
-  text-align: center; 
-  padding: 15px; 
-  border-bottom: 0.1px solid white; 
-  border-top: 0.1px solid white; 
-}     
+main .left p{
+    text-transform: uppercase;
+    color: #ccc;
+    font-size: 0.8em;
+    font-weight: 600;
+    margin: 20px 0;
+}
 
-.one .two ul li a{ 
-  color: #ffffff; 
-  display: block; 
-} 
+main .left ul li{
+    padding: 10px 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+}
 
-.one .two ul li a .side{ 
-  width: 25px; 
-  align:center; 
-} 
+main .left ul li:hover{
+    background-color: #424549 ;
+}
 
-.one .content{ 
-  width: 100%; 
-  margin-left: 200px; 
-} 
+main .left ul li.selected {
+    background-color: #424549; /* Add your desired background color */
+}
 
-.one .content .topbar{ 
-  text-align: center; 
-  padding: 20px; 
-  background: #00b33c; 
-  color: white; 
-} 
-        
-.one .content .contentbar{ 
-  margin: auto; 
-} 
+main .center {
+    padding: 1rem 2rem;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: start;
+}
 
-.one .content .contentbar h1{ 
-  color: #11a844; 
-  text-align: center; 
-  font-style: oblique; 
-  font-weight: bold; 
-} 
+main .center ul li{
+    margin-bottom: 10px;
+}
+
+main .center .message-bar{
+   
+    padding: 1rem;
+    width: 100%;
+    display: flex;
+    background-color: #424549;
+    border-radius: 8px;
+}
+
+main .center .message-bar input{
+    color: #fff;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 1em;
+}
+
+main .center .message-bar button{
+    font-size: 1em;
+    cursor: pointer;
+}
+
+main .right{
+    padding: 1rem 2rem;
+    width: max(25%, 350px);
+    background-color: #23272a;
+    height: 100%;
+}
+
+main .right p{
+    text-transform: uppercase;
+    color: #ccc;
+    font-size: 0.8em;
+    font-weight: 600;
+    margin: 20px 0;
+}
+
+main .right ul li{
+    padding: 10px 0;
+}

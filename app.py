@@ -15,7 +15,7 @@ app.secret_key = 'your secret key'
   
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'password'
+app.config['MYSQL_PASSWORD'] = 'tigreazul21'
 app.config['MYSQL_DB'] = 'videoChatApp'
 
 rooms = {}  # Dictionary to store users and messages in each room
@@ -94,9 +94,16 @@ def register():
 @app.route("/index") 
 def index(): 
     if 'loggedin' in session:  
-        return render_template("index.html") 
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor) 
+        cursor.execute('SELECT id, username FROM usuario') 
+        users = cursor.fetchall()
+
+        # Converter os resultados para um formato JSON
+        user_list = [{'id': user['id'], 'name': user['username']} for user in users]
+        print("Users:", user_list)  # Adicione este print para verificar a lista de usuários
+
+        return render_template("index.html", users=user_list)  
     return redirect(url_for('login')) 
-  
   
 @app.route("/display") 
 def display(): 
