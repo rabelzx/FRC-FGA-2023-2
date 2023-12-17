@@ -12,7 +12,7 @@ app.secret_key = 'your secret key'
   
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'tigreazul21'
+app.config['MYSQL_PASSWORD'] = 'password'
 app.config['MYSQL_DB'] = 'videoChatApp'
 
 rooms = {}  # Dictionary to store users and messages in each room
