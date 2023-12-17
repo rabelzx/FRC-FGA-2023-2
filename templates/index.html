@@ -3,22 +3,23 @@
     <title>index</title>
     <link rel="stylesheet" href="../static/style.css" />
     <script src="https://cdn.socket.io/4.2.0/socket.io.js"></script>
+    
   </head>
   <body>
     <main>
       <div class="left">
         <div>
           <p>Canais de texto</p>
-          <ul>
+          <ul class="text-rooms">
             <li value="room1" onclick="changeRoom('room1')">Jogos</li>
             <li value="room2" onclick="changeRoom('room2')">Esportes</li>
             <li value="room3" onclick="changeRoom('room3')">Programação</li>
           </ul>
           <p>Canais de vídeo</p>
-          <ul>
-            <li>Jogos</li>
-            <li>Esportes</li>
-            <li>Programação</li>
+          <ul class="video-rooms">
+            <li value="room4" onclick="joinTheme('room4')">Jogos</li>
+            <li value="room5" onclick="joinTheme('room5')">Esportes</li>
+            <li value="room6" onclick="joinTheme('room6')">Programação</li>
           </ul>
         </div>
         <div class="logout">
@@ -38,7 +39,18 @@
           <button onclick="sendMessage()">Enviar</button>
         </div>
       </div>
-      <div class="center-video">Vídeos</div>
+      <div class="center-video">
+        <div class="video-area">
+          <div class="local-video">
+            <video id="localVideo" autoplay muted></video>
+            <p>você</p>
+          </div>
+          <div class="remote-video">
+            <video id="remoteVideo" autoplay muted></video>
+            <p>outro usuário</p>
+          </div>
+        </div>
+      </div>
       <div class="right">
         <p>usuários neste canal</p>
         <ul>

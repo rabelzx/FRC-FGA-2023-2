@@ -348,6 +348,37 @@ def emit_users():
     user_list = [{'id': username, 'name': username} for username in room_users]
     emit('users', {'clients': user_list}, broadcast=True)
   
+#chat de vídeo
+themes = {}
+
+@socketio.on('join')
+def handle_join(data):
+    theme = data['theme']
+    join_room(theme)
+
+    if theme not in themes:
+        themes[theme] = {'offer': None, 'answer': None, 'candidates': []}
+
+    emit('theme_joined', theme)
+
+@socketio.on('offer')
+def handle_offer(data):
+    theme = data['theme']
+    themes[theme]['offer'] = data['offer']
+    emit('offer_received', data, room=theme, include_self=False)
+
+@socketio.on('answer')
+def handle_answer(data):
+    theme = data['theme']
+    themes[theme]['answer'] = data['answer']
+    emit('answer_received', data, room=theme, include_self=False)
+
+@socketio.on('ice_candidate')
+def handle_ice_candidate(data):
+    theme = data['theme']
+    themes[theme]['candidates'].append(data['candidate'])
+    emit('ice_candidate_received', data, room=theme, include_self=False)
+
 if __name__ == "__main__": 
     criar_tabela()
     socketio.run(app, debug=True)
