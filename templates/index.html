@@ -4,103 +4,68 @@
     <link rel="stylesheet" href="../static/style.css" />
     <script src="https://cdn.socket.io/4.2.0/socket.io.js"></script>
   </head>
-
   <body>
     <main>
       <div class="left">
-        <p>Canais de texto</p>
-        <ul>
-          <li value="room1" onclick="changeRoom('room1')">Jogos</li>
-          <li value="room2" onclick="changeRoom('room2')">Esportes</li>
-          <li value="room3" onclick="changeRoom('room3')">Programação</li>
-        </ul>
-        <p>Canais de vídeo</p>
-        <ul>
-          <li >Jogos</li>
-          <li >Esportes</li>
-          <li >Programação</li>
-        </ul>
+        <div>
+          <p>Canais de texto</p>
+          <ul>
+            <li value="room1" onclick="changeRoom('room1')">Jogos</li>
+            <li value="room2" onclick="changeRoom('room2')">Esportes</li>
+            <li value="room3" onclick="changeRoom('room3')">Programação</li>
+          </ul>
+          <p>Canais de vídeo</p>
+          <ul>
+            <li>Jogos</li>
+            <li>Esportes</li>
+            <li>Programação</li>
+          </ul>
+        </div>
+        <div class="logout">
+          <a href="{{ url_for('update') }}">meu perfil</a>
+          <a href="{{ url_for('logout') }}">sair</a>
+        </div>
       </div>
-
-      <div class="center">
+      <div class="center-message">
         <ul id="users"></ul>
         <ul id="messages"></ul>
         <div class="message-bar">
-          <input id="message_input" autocomplete="off" />
+          <input
+            id="message_input"
+            autocomplete="off"
+            placeholder="Escreva uma mensagem..."
+          />
           <button onclick="sendMessage()">Enviar</button>
         </div>
       </div>
-
+      <div class="center-video">Vídeos</div>
       <div class="right">
         <p>usuários neste canal</p>
-        <ul id="online-users"></ul>
+        <ul>
+          {% for user in user_list %}
+          <li class="status-blue">{{ user['name'] }}</li>
+          {% endfor %}
+        </ul>
+        <p>usuários disponíveis</p>
+        <ul>
+          {% for user in online_users %}
+          <li class="status-green">{{ user['name'] }}</li>
+          {% endfor %}
+        </ul>
+        <p>usuários ocupados</p>
+        <ul>
+          {% for user in ocupado_users %}
+          <li class="status-red">{{ user['username'] }}</li>
+          {% endfor %}
+        </ul>
+        <p>usuários offline</p>
+        <ul>
+          {% for user in offline_users %}
+          <li class="status-gray">{{ user['name'] }}</li>
+          {% endfor %}
+        </ul>
       </div>
     </main>
-
-    <script>
-      var socket = io.connect(
-        "http://" + document.domain + ":" + location.port
-      );
-      var clientId;
-
-      socket.on("connect", function () {
-        // No need to set clientId here; the server will send the correct ID
-      });
-
-      socket.on("users", function (data) {
-        var ul = document.getElementById("users");
-        ul.innerHTML = "";
-        data.clients.forEach(function (client) {
-          var li = document.createElement("li");
-          li.appendChild(
-            document.createTextNode(`${client.id} entrou no chat`)
-          );
-          ul.appendChild(li);
-        });
-      });
-
-      socket.on("users", function (data) {
-        var ul = document.getElementById("online-users");
-        ul.innerHTML = "";
-        data.clients.forEach(function (client) {
-          var li = document.createElement("li");
-          li.appendChild(document.createTextNode(`${client.id}`));
-          ul.appendChild(li);
-        });
-      });
-
-      socket.on("");
-
-      socket.on("message", function (data) {
-        var ul = document.getElementById("messages");
-        var li = document.createElement("li");
-        li.appendChild(
-          document.createTextNode(`${data.username}: ${data.message}`)
-        );
-        ul.appendChild(li);
-      });
-
-      function sendMessage() {
-        var messageInput = document.getElementById("message_input");
-        var message = messageInput.value;
-        if (message.trim() !== "") {
-          socket.emit("message", { message: message });
-          messageInput.value = "";
-        }
-      }
-
-      function changeRoom(channel) {
-
-        var listItems = document.querySelectorAll(".left ul li");
-        listItems.forEach(function (item) {
-          item.classList.remove("selected");
-        });
-
-        var selectedListItem = document.querySelector(`.left ul li[value="${channel}"]`);
-        selectedListItem.classList.add("selected");
-
-        socket.emit("join_room", { room: channel });
-      }
-    </script>
+    <script src="/static/index.js"></script>
   </body>
 </html>
