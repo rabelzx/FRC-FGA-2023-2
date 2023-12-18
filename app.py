@@ -175,7 +175,7 @@ def handle_message(data):
     rooms[room]['messages'].append({'username': username, 'message': message})
 
     # Broadcast a mensagem para todos na sala
-    emit('message', {'message': message, 'username': username}, room=room)
+    emit('message', {'message': message, 'username': username, 'room': room}, room=room)
     emit_users()
 
 @socketio.on('join_room')

@@ -1,9 +1,7 @@
 var socket = io.connect("http://" + document.domain + ":" + location.port);
 var clientId;
 
-socket.on("connect", function () {
-  // No need to set clientId here; the server will send the correct ID
-});
+socket.on("connect", function () {});
 
 socket.on("users", function (data) {
   var ul = document.getElementById("users");
@@ -15,13 +13,24 @@ socket.on("users", function (data) {
   });
 });
 
-//lógica do chat de texto
 socket.on("");
 socket.on("message", function (data) {
-  var ul = document.getElementById("messages");
-  var li = document.createElement("li");
-  li.appendChild(document.createTextNode(`${data.username}: ${data.message}`));
-  ul.appendChild(li);
+  if(data.room == 'room1'){
+    var ul = document.getElementById("messages-room1");
+    var li = document.createElement("li");
+    li.appendChild(document.createTextNode(`${data.username}: ${data.message}`));
+    ul.appendChild(li);
+  } else if(data.room == 'room2'){
+    var ul = document.getElementById("messages-room2");
+    var li = document.createElement("li");
+    li.appendChild(document.createTextNode(`${data.username}: ${data.message}`));
+    ul.appendChild(li);
+  } else if(data.room == 'room3'){
+    var ul = document.getElementById("messages-room3");
+    var li = document.createElement("li");
+    li.appendChild(document.createTextNode(`${data.username}: ${data.message}`));
+    ul.appendChild(li);
+  }
 });
 
 function sendMessage() {
@@ -61,6 +70,32 @@ function changeRoom(channel) {
 
   var centerVideoElement = document.querySelector('.center-video');
   centerVideoElement.classList.toggle('active', false); 
+
+  //ocultar as outras ul tambem condicionalmente
+  if(channel == 'room1'){
+    var ul1 = document.getElementById("messages-room1");
+    ul1.style.display = "block";
+    var ul2 = document.getElementById("messages-room2");
+    ul2.style.display = "none";
+    var ul3 = document.getElementById("messages-room3");
+    ul3.style.display = "none";
+  }
+  if(channel == 'room2'){
+    var ul1 = document.getElementById("messages-room1");
+    ul1.style.display = "none";
+    var ul2 = document.getElementById("messages-room2");
+    ul2.style.display = "block";
+    var ul3 = document.getElementById("messages-room3");
+    ul3.style.display = "none";
+  }
+  if(channel == 'room3'){
+    var ul1 = document.getElementById("messages-room1");
+    ul1.style.display = "none";
+    var ul2 = document.getElementById("messages-room2");
+    ul2.style.display = "none";
+    var ul3 = document.getElementById("messages-room3");
+    ul3.style.display = "block";
+  }
   
   socket.emit("join_room", { room: channel });
 }
@@ -221,6 +256,3 @@ socket.on("theme_left", (theme) => {
   // Update UI or perform any other cleanup tasks
   console.log(`Left video room: ${theme}`);
 });
-
-// Rest of your existing code...
-
