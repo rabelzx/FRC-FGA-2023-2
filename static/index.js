@@ -33,6 +33,18 @@ function sendMessage() {
   }
 }
 
+// Adiciona um ouvinte de evento de teclado ao campo de entrada de mensagem
+document.getElementById("message_input").addEventListener("keydown", function(event) {
+  // Verifica se a tecla pressionada é "Enter" (código 13)
+  if (event.key === "Enter" || event.keyCode === 13) {
+    sendMessage();
+  }
+});
+
+// Adiciona um ouvinte de evento de clique ao botão "Enviar"
+document.getElementById("send_button").addEventListener("click", sendMessage);
+
+
 function changeRoom(channel) {
   var listItems = document.querySelectorAll(".left .text-rooms li");
   listItems.forEach(function (item) {
