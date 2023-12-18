@@ -53,10 +53,54 @@ document.getElementById("message_input").addEventListener("keydown", function(ev
 // Adiciona um ouvinte de evento de clique ao botão "Enviar"
 document.getElementById("send_button").addEventListener("click", sendMessage);
 
+function joinInit(channel) {
+  let listItemsInit = document.querySelectorAll(".left .init-room li");
+  listItemsInit.forEach(function (item) {
+    item.classList.remove("selected");
+  });
+  let listItemsText = document.querySelectorAll(".left .text-rooms li");
+  listItemsText.forEach(function (item) {
+    item.classList.remove("selected");
+  });
+  let listItemsVideo = document.querySelectorAll(".left .video-rooms li");
+  listItemsVideo.forEach(function (item) {
+    item.classList.remove("selected");
+  });
+
+  var selectedListItem = document.querySelector(
+    `.left .init-room li[value="${channel}"]`
+  );
+  selectedListItem.classList.add("selected");
+
+  var centerMessageElement = document.querySelector('.center-message');
+  centerMessageElement.classList.toggle('active', false); 
+
+  var centerVideoElement = document.querySelector('.center-video');
+  centerVideoElement.classList.toggle('active', false); 
+
+  var centerInitElement = document.querySelector('.center-init');
+  centerInitElement.classList.toggle('active', false); 
+
+  var initDiv = document.querySelector('.initNone');
+  initDiv.classList.toggle('active', false); 
+
+  var initUser = document.querySelector('.userNone');
+  initUser.classList.toggle('active', false); 
+
+  // socket.emit("join", { theme: channel });
+}
 
 function changeRoom(channel) {
-  var listItems = document.querySelectorAll(".left .text-rooms li");
-  listItems.forEach(function (item) {
+  let listItemsInit = document.querySelectorAll(".left .init-room li");
+  listItemsInit.forEach(function (item) {
+    item.classList.remove("selected");
+  });
+  let listItemsText = document.querySelectorAll(".left .text-rooms li");
+  listItemsText.forEach(function (item) {
+    item.classList.remove("selected");
+  });
+  let listItemsVideo = document.querySelectorAll(".left .video-rooms li");
+  listItemsVideo.forEach(function (item) {
     item.classList.remove("selected");
   });
 
@@ -70,6 +114,15 @@ function changeRoom(channel) {
 
   var centerVideoElement = document.querySelector('.center-video');
   centerVideoElement.classList.toggle('active', false); 
+
+  var centerInitElement = document.querySelector('.center-init');
+  centerInitElement.classList.toggle('active', true); 
+
+  var initDiv = document.querySelector('.initNone');
+  initDiv.classList.toggle('active', true); 
+
+  var initUser = document.querySelector('.userNone');
+  initUser.classList.toggle('active', true); 
 
   //ocultar as outras ul tambem condicionalmente
   if(channel == 'room1'){
@@ -104,8 +157,16 @@ function changeRoom(channel) {
 
 //troca a sala de vídeo
 function changeVideoRoom(channel) {
-  var listItems = document.querySelectorAll(".left .video-rooms li");
-  listItems.forEach(function (item) {
+  let listItemsInit = document.querySelectorAll(".left .init-room li");
+  listItemsInit.forEach(function (item) {
+    item.classList.remove("selected");
+  });
+  let listItemsText = document.querySelectorAll(".left .text-rooms li");
+  listItemsText.forEach(function (item) {
+    item.classList.remove("selected");
+  });
+  let listItemsVideo = document.querySelectorAll(".left .video-rooms li");
+  listItemsVideo.forEach(function (item) {
     item.classList.remove("selected");
   });
 
@@ -120,6 +181,14 @@ function changeVideoRoom(channel) {
   var centerVideoElement = document.querySelector('.center-video');
   centerVideoElement.classList.toggle('active', true); 
 
+  var centerInitElement = document.querySelector('.center-init');
+  centerInitElement.classList.toggle('active', true); 
+
+  var initDiv = document.querySelector('.initNone');
+  initDiv.classList.toggle('active', true); 
+
+  var initUser = document.querySelector('.userNone');
+  initUser.classList.toggle('active', true);
 }
 
 //ingressa na sala de vídeo

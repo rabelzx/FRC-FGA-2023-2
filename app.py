@@ -38,31 +38,44 @@ def criar_tabela():
         cursor.execute(create_table_query)
  
 @app.route('/') 
-@app.route('/login', methods =['GET', 'POST']) 
-def login(): 
-    msg = '' 
-    if request.method == 'POST' and 'username' in request.form and 'password' in request.form: 
-        username = request.form['username'] 
-        password = request.form['password'] 
-        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor) 
-        cursor.execute('SELECT * FROM usuario WHERE username = % s AND password = % s', (username, password, )) 
-        account = cursor.fetchone() 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    msg = ''
+    if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
+        username = request.form['username']
+        password = request.form['password']
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM usuario WHERE username = %s AND password = %s', (username, password, ))
+        account = cursor.fetchone()
+        
         if account:
+            # Atualiza o status para "online"
+            cursor.execute('UPDATE usuario SET status = %s WHERE id = %s', ('online', account['id']))
+            mysql.connection.commit()
+
             session['loggedin'] = True
-            session['id'] = account['id'] 
-            session['username'] = account['username'] 
-            msg = 'Logged in successfully !'
-            return render_template('index.html', msg = msg) 
-        else: 
+            session['id'] = account['id']
+            session['username'] = account['username']
+            msg = 'Logged in successfully!'
+            return render_template('index.html', msg=msg)
+        else:
             msg = 'Incorrect username / password !'
-    return render_template('login.html', msg = msg) 
+    
+    return render_template('login.html', msg=msg)
   
 @app.route('/logout') 
-def logout(): 
-   session.pop('loggedin', None) 
-   session.pop('id', None) 
-   session.pop('username', None) 
-   return redirect(url_for('login')) 
+def logout():
+    if 'loggedin' in session:
+        # Atualiza o status para "offline" ao fazer logout
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('UPDATE usuario SET status = %s WHERE id = %s', ('offline', session['id']))
+        mysql.connection.commit()
+
+        session.pop('loggedin', None)
+        session.pop('id', None)
+        session.pop('username', None)
+    
+    return redirect(url_for('login'))
   
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -148,7 +161,7 @@ def update():
 
 @socketio.on('connect')
 def handle_connect():
-    session['room'] = 'room1'  # Use a default room
+    session['room'] = 'room0'  # Use a default room
     join_room(session['room'])
     rooms.setdefault(session['room'], {'users': set(), 'messages': []})
     rooms[session['room']]['users'].add(session['username'])

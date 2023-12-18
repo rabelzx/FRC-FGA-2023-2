@@ -9,6 +9,9 @@
     <main>
       <div class="left">
         <div>
+          <ul class="init-room">
+            <li value="room0" onclick="joinInit('room0')"">INICIO</li>
+          </ul>
           <p>Canais de texto</p>
           <ul class="text-rooms">
             <li value="room1" onclick="changeRoom('room1')">Jogos</li>
@@ -26,6 +29,9 @@
           <a href="{{ url_for('update') }}">meu perfil</a>
           <a href="{{ url_for('logout') }}">sair</a>
         </div>
+      </div>
+      <div class="center-init">
+        <p>Bem-Vindo, selecione uma sala de chat ao lado para iniciar</p>
       </div>
       <div class="center-message">
         <ul id="users"></ul>
@@ -60,8 +66,8 @@
         </div>
       </div>
       <div class="right">
-        <p>usuários neste canal</p>
-        <ul>
+        <p class="initNone">usuários neste canal</p>
+        <ul class="userNone">
           {% for user in user_list %}
           <li class="status-blue">{{ user['name'] }}</li>
           {% endfor %}
