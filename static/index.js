@@ -54,7 +54,9 @@ function changeRoom(channel) {
 }
 
 //lógica do chat de vídeo
-function joinTheme(channel) {
+
+//troca a sala de vídeo
+function changeVideoRoom(channel) {
   var listItems = document.querySelectorAll(".left .video-rooms li");
   listItems.forEach(function (item) {
     item.classList.remove("selected");
@@ -71,9 +73,52 @@ function joinTheme(channel) {
   var centerVideoElement = document.querySelector('.center-video');
   centerVideoElement.classList.toggle('active', true); 
 
-  socket.emit("join", { theme: channel });
 }
 
+//ingressa na sala de vídeo
+function joinVideoRoom() {
+  var listItems = document.querySelectorAll(".left .video-rooms li");
+  var room; 
+  listItems.forEach(function (item) {
+    if(item.classList.contains('selected')){
+      room = item.getAttribute('value');
+    }
+  });
+
+  socket.emit("join_video", { theme: room});
+}
+
+//sai da sala de vídeo
+function leaveVideoRoom() {
+  var listItems = document.querySelectorAll(".left .video-rooms li");
+  var room; 
+  listItems.forEach(function (item) {
+    if(item.classList.contains('selected')){
+      room = item.getAttribute('value');
+    }
+  });
+
+  socket.emit("leave_video", { theme: room});
+  var centerVideoElement = document.querySelector('.center-video');
+  centerVideoElement.classList.toggle('active', false);
+  toggleCamera();
+  toggleMute();
+}
+
+//liga/desliga o microfone
+function toggleMute() {
+  var localVideo = document.getElementById("localVideo");
+  localVideo.muted = !localVideo.muted;
+}
+
+//liga/desliga a câmera
+function toggleCamera() {
+  var localVideo = document.getElementById("localVideo");
+  var tracks = localVideo.srcObject.getVideoTracks();
+  tracks.forEach((track) => (track.enabled = !track.enabled));
+}
+
+//recebe a resposta do join e insere o user na sala de vídeo
 socket.on("theme_joined", (theme) => {
   navigator.mediaDevices
     .getUserMedia({ video: true, audio: true })
@@ -141,3 +186,29 @@ socket.on("theme_joined", (theme) => {
     })
     .catch((error) => console.error(error));
 });
+
+// recebe a resposta do leave e remove o usuário da sala de vídeo
+socket.on("theme_left", (theme) => {
+  const localVideo = document.getElementById("localVideo");
+  const remoteVideo = document.getElementById("remoteVideo");
+
+  // Close the local stream
+  let tracks = localVideo.srcObject.getTracks();
+  tracks.forEach((track) => track.stop());
+
+  // Close the peer connection
+  if (peerConnection) {
+    peerConnection.close();
+    peerConnection = null;
+  }
+
+  // Clear the video elements
+  localVideo.srcObject = null;
+  remoteVideo.srcObject = null;
+
+  // Update UI or perform any other cleanup tasks
+  console.log(`Left video room: ${theme}`);
+});
+
+// Rest of your existing code...
+

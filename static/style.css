@@ -112,28 +112,29 @@ main .center-video {
   display: none;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 main .center-video.active {
   display: flex;
 }
 
-main .center-video .video-area {
+main .center-video .video-container {
   display: flex;
   gap: 20px;
 }
 
-main .center-video .video-area .local-video,
-main .center-video .video-area .remote-video {
+main .center-video .video-container .local-video,
+main .center-video .video-container .remote-video {
   text-align: center;
 }
 
-main .center-video .video-area video {
+main .center-video .video-container video {
   max-width: 370px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-main .center-video .video-area p {
+main .center-video .video-container p {
   text-transform: uppercase;
   color: #ccc;
   font-size: 0.8em;

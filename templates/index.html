@@ -17,9 +17,9 @@
           </ul>
           <p>Canais de vídeo</p>
           <ul class="video-rooms">
-            <li value="room4" onclick="joinTheme('room4')">Jogos</li>
-            <li value="room5" onclick="joinTheme('room5')">Esportes</li>
-            <li value="room6" onclick="joinTheme('room6')">Programação</li>
+            <li value="room4" onclick="changeVideoRoom('room4')">Jogos</li>
+            <li value="room5" onclick="changeVideoRoom('room5')">Esportes</li>
+            <li value="room6" onclick="changeVideoRoom('room6')">Programação</li>
           </ul>
         </div>
         <div class="logout">
@@ -40,15 +40,21 @@
         </div>
       </div>
       <div class="center-video">
-        <div class="video-area">
+        <div class="video-container">
           <div class="local-video">
-            <video id="localVideo" autoplay></video>
+            <video id="localVideo" autoplay muted></video>
             <p>você</p>
           </div>
           <div class="remote-video">
             <video id="remoteVideo" autoplay></video>
             <p>outro usuário</p>
           </div>
+        </div>
+        <div class="video-bar">
+          <button onclick="joinVideoRoom()">Entrar na chamada</button>
+          <button onclick="leaveVideoRoom()">Sair da chamada</button>
+          <button onclick="toggleMute()">Ligar/Desligar microfone</button>
+          <button onclick="toggleCamera()">Ligar/Desligar câmera</button>
         </div>
       </div>
       <div class="right">

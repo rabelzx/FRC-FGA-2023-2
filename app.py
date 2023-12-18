@@ -199,7 +199,7 @@ def emit_users():
 #chat de vídeo
 themes = {}
 
-@socketio.on('join')
+@socketio.on('join_video')
 def handle_join(data):
     theme = data['theme']
     join_room(theme)
@@ -208,6 +208,12 @@ def handle_join(data):
         themes[theme] = {'offer': None, 'answer': None, 'candidates': []}
 
     emit('theme_joined', theme)
+
+@socketio.on('leave_video')
+def handle_leave(data):
+    theme = data['theme']
+    leave_room(theme)
+    emit('theme_left', theme)
 
 @socketio.on('offer')
 def handle_offer(data):
