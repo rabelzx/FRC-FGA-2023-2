@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+.one {
+    display: flex;
+    background-color: #23272a;
+    height: 100vh;
+}
+
+.two {
+    background-color: #23272a;
+    padding: 20px;
+    color: #fff;
+    text-align: center;
+}
+
+.two h1 {
+    font-weight: 900;
+    font-size: 2em;
+    margin: 0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 15px;
+}
+
+ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+    font-size: 16px;
+    transition: color linear 160ms;
+}
+
+ul li a:hover {
+    color: #58035e;
+}
+
+.content {
+    flex-grow: 1;
+}
+
+.topbar {
+    background-color: #23272a;
+    padding: 20px;
+    color: #fff;
+}
+
+.topbar h2 {
+    font-weight: 600;
+    font-size: 1.8em;
+    margin: 0;
+}
+
+.contentbar {
+    width: 20%;
+    background-color: #23272a;
+    border-radius: 7px;
+    padding: 40px;
+    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+
+.contentbar h1 {
+    font-weight: 900;
+    font-size: 2.3em;
+    margin: 0;
+    color: #fff;
+}
+
+.contentbar form {
+    width: 100%;
+}
+
+.contentbar label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #555;
+}
+
+.contentbar input,
+.contentbar select {
+    padding: 15px;
+    font-size: 14px;
+    border: 1px solid #480ca8;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    border-radius: 4px;
+    transition: border linear 160ms;
+    outline: none;
+    width: 100%;
+}
+
+.contentbar input:focus,
+.contentbar select:focus {
+    border: 1px solid #58035e;
+}
+
+.btn {
+    background-color: #774185;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 800;
+    border: none !important;
+    padding: 15px;
+    transition: background-color linear 160ms;
+    cursor: pointer;
+    margin: 0 !important;
+    width: 150px;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    background-color: #58035e;
+}
