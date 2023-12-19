@@ -376,3 +376,31 @@ socket.on("theme_left", (theme) => {
   // Update UI or perform any other cleanup tasks
   console.log(`Left video room: ${theme}`);
 });
+
+socket.on("update_user_list", function (data) {
+  console.log("Entrei")
+  var onlineUsersList = document.getElementById("online-users");
+  var offlineUsersList = document.getElementById('offline-users');
+  var ocupadoUsersList = document.getElementById('ocupado-users');
+
+  onlineUsersList.innerHTML = "";
+  data.online_users.forEach(function (user) {
+    var li = document.createElement("li");
+    li.appendChild(document.createTextNode(`${user}`));
+    onlineUsersList.appendChild(li);  // Corrigido aqui
+  });
+
+  offlineUsersList.innerHTML = "";
+  data.offline_users.forEach(function (user) {
+    var li = document.createElement("li");
+    li.appendChild(document.createTextNode(`${user}`));  // Corrigido aqui
+    offlineUsersList.appendChild(li);  // Corrigido aqui
+  });
+
+  ocupadoUsersList.innerHTML = "";
+  data.ocupado_users.forEach(function (user) {
+    var li = document.createElement("li");
+    li.appendChild(document.createTextNode(`${user}`));  // Corrigido aqui
+    ocupadoUsersList.appendChild(li);  // Corrigido aqui
+  });
+});
