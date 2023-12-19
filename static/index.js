@@ -8,7 +8,7 @@ socket.on("users", function (data) {
 
   console.log(data);
 
-  if (data.room === 'room1' || data.room === 'room2' || data.room === 'room3') {
+  if (data.room === "room1" || data.room === "room2" || data.room === "room3") {
     ul = document.getElementById(`users-${data.room}`);
     ul.innerHTML = ""; // Limpar a lista antes de adicionar usuários
 
@@ -30,20 +30,26 @@ socket.on("users", function (data) {
 
 socket.on("");
 socket.on("message", function (data) {
-  if(data.room == 'room1'){
+  if (data.room == "room1") {
     var ul = document.getElementById("messages-room1");
     var li = document.createElement("li");
-    li.appendChild(document.createTextNode(`${data.username}: ${data.message}`));
+    li.appendChild(
+      document.createTextNode(`${data.username}: ${data.message}`)
+    );
     ul.appendChild(li);
-  } else if(data.room == 'room2'){
+  } else if (data.room == "room2") {
     var ul = document.getElementById("messages-room2");
     var li = document.createElement("li");
-    li.appendChild(document.createTextNode(`${data.username}: ${data.message}`));
+    li.appendChild(
+      document.createTextNode(`${data.username}: ${data.message}`)
+    );
     ul.appendChild(li);
-  } else if(data.room == 'room3'){
+  } else if (data.room == "room3") {
     var ul = document.getElementById("messages-room3");
     var li = document.createElement("li");
-    li.appendChild(document.createTextNode(`${data.username}: ${data.message}`));
+    li.appendChild(
+      document.createTextNode(`${data.username}: ${data.message}`)
+    );
     ul.appendChild(li);
   }
 });
@@ -58,12 +64,14 @@ function sendMessage() {
 }
 
 // Adiciona um ouvinte de evento de teclado ao campo de entrada de mensagem
-document.getElementById("message_input").addEventListener("keydown", function(event) {
-  // Verifica se a tecla pressionada é "Enter" (código 13)
-  if (event.key === "Enter" || event.keyCode === 13) {
-    sendMessage();
-  }
-});
+document
+  .getElementById("message_input")
+  .addEventListener("keydown", function (event) {
+    // Verifica se a tecla pressionada é "Enter" (código 13)
+    if (event.key === "Enter" || event.keyCode === 13) {
+      sendMessage();
+    }
+  });
 
 // Adiciona um ouvinte de evento de clique ao botão "Enviar"
 document.getElementById("send_button").addEventListener("click", sendMessage);
@@ -87,20 +95,20 @@ function joinInit(channel) {
   );
   selectedListItem.classList.add("selected");
 
-  var centerMessageElement = document.querySelector('.center-message');
-  centerMessageElement.classList.toggle('active', false); 
+  var centerMessageElement = document.querySelector(".center-message");
+  centerMessageElement.classList.toggle("active", false);
 
-  var centerVideoElement = document.querySelector('.center-video');
-  centerVideoElement.classList.toggle('active', false); 
+  var centerVideoElement = document.querySelector(".center-video");
+  centerVideoElement.classList.toggle("active", false);
 
-  var centerInitElement = document.querySelector('.center-init');
-  centerInitElement.classList.toggle('active', false); 
+  var centerInitElement = document.querySelector(".center-init");
+  centerInitElement.classList.toggle("active", false);
 
-  var initDiv = document.querySelector('.initNone');
-  initDiv.classList.toggle('active', false); 
+  var initDiv = document.querySelector(".initNone");
+  initDiv.classList.toggle("active", false);
 
-  var initUser = document.querySelector('.userNone');
-  initUser.classList.toggle('active', false); 
+  var initUser = document.querySelector(".userNone");
+  initUser.classList.toggle("active", false);
 
   // socket.emit("join", { theme: channel });
 }
@@ -124,20 +132,20 @@ function changeRoom(channel) {
   );
   selectedListItem.classList.add("selected");
 
-  var centerVideoElement = document.querySelector('.center-message');
-  centerVideoElement.classList.toggle('active', true); 
+  var centerVideoElement = document.querySelector(".center-message");
+  centerVideoElement.classList.toggle("active", true);
 
-  var centerVideoElement = document.querySelector('.center-video');
-  centerVideoElement.classList.toggle('active', false); 
+  var centerVideoElement = document.querySelector(".center-video");
+  centerVideoElement.classList.toggle("active", false);
 
-  var centerInitElement = document.querySelector('.center-init');
-  centerInitElement.classList.toggle('active', true); 
+  var centerInitElement = document.querySelector(".center-init");
+  centerInitElement.classList.toggle("active", true);
 
-  var initDiv = document.querySelector('.initNone');
-  initDiv.classList.toggle('active', true); 
+  var initDiv = document.querySelector(".initNone");
+  initDiv.classList.toggle("active", true);
 
   //ocultar as outras ul tambem condicionalmente
-  if(channel == 'room1'){
+  if (channel == "room1") {
     var ul1 = document.getElementById("messages-room1");
     ul1.style.display = "block";
     var ul2 = document.getElementById("messages-room2");
@@ -152,7 +160,7 @@ function changeRoom(channel) {
     ul3 = document.getElementById("users-room3");
     ul3.style.display = "none";
   }
-  if(channel == 'room2'){
+  if (channel == "room2") {
     var ul1 = document.getElementById("messages-room1");
     ul1.style.display = "none";
     var ul2 = document.getElementById("messages-room2");
@@ -167,7 +175,7 @@ function changeRoom(channel) {
     ul3 = document.getElementById("users-room3");
     ul3.style.display = "none";
   }
-  if(channel == 'room3'){
+  if (channel == "room3") {
     var ul1 = document.getElementById("messages-room1");
     ul1.style.display = "none";
     var ul2 = document.getElementById("messages-room2");
@@ -183,8 +191,6 @@ function changeRoom(channel) {
     ul3.style.display = "block";
   }
 
-
-  
   socket.emit("join_room", { room: channel });
 }
 
@@ -192,6 +198,13 @@ function changeRoom(channel) {
 
 //troca a sala de vídeo
 function changeVideoRoom(channel) {
+  var ul1 = document.getElementById("users-room1");
+  ul1.style.display = "none";
+  var ul2 = document.getElementById("users-room2");
+  ul2.style.display = "none";
+  var ul3 = document.getElementById("users-room3");
+  ul3.style.display = "none";
+  
   let listItemsInit = document.querySelectorAll(".left .init-room li");
   listItemsInit.forEach(function (item) {
     item.classList.remove("selected");
@@ -210,48 +223,51 @@ function changeVideoRoom(channel) {
   );
   selectedListItem.classList.add("selected");
 
-  var centerVideoElement = document.querySelector('.center-message');
-  centerVideoElement.classList.toggle('active', false); 
+  var centerVideoElement = document.querySelector(".center-message");
+  centerVideoElement.classList.toggle("active", false);
 
-  var centerVideoElement = document.querySelector('.center-video');
-  centerVideoElement.classList.toggle('active', true); 
+  var centerVideoElement = document.querySelector(".center-video");
+  centerVideoElement.classList.toggle("active", true);
 
-  var centerInitElement = document.querySelector('.center-init');
-  centerInitElement.classList.toggle('active', true); 
+  var centerInitElement = document.querySelector(".center-init");
+  centerInitElement.classList.toggle("active", true);
 
-  var initDiv = document.querySelector('.initNone');
-  initDiv.classList.toggle('active', true); 
+  var initDiv = document.querySelector(".initNone");
+  initDiv.classList.toggle("active", true);
 
-  var initUser = document.querySelector('.userNone');
-  initUser.classList.toggle('active', true);
+  var initUser = document.querySelector(".userNone");
+  initUser.classList.toggle("active", true);
+
+  
 }
 
 //ingressa na sala de vídeo
 function joinVideoRoom() {
   var listItems = document.querySelectorAll(".left .video-rooms li");
-  var room; 
+  var room;
   listItems.forEach(function (item) {
-    if(item.classList.contains('selected')){
-      room = item.getAttribute('value');
+    if (item.classList.contains("selected")) {
+      room = item.getAttribute("value");
     }
   });
 
-  socket.emit("join_video", { theme: room});
+  socket.emit("join_video", { theme: room });
+
 }
 
 //sai da sala de vídeo
 function leaveVideoRoom() {
   var listItems = document.querySelectorAll(".left .video-rooms li");
-  var room; 
+  var room;
   listItems.forEach(function (item) {
-    if(item.classList.contains('selected')){
-      room = item.getAttribute('value');
+    if (item.classList.contains("selected")) {
+      room = item.getAttribute("value");
     }
   });
 
-  socket.emit("leave_video", { theme: room});
-  var centerVideoElement = document.querySelector('.center-video');
-  centerVideoElement.classList.toggle('active', false);
+  socket.emit("leave_video", { theme: room });
+  var centerVideoElement = document.querySelector(".center-video");
+  centerVideoElement.classList.toggle("active", false);
   toggleCamera();
   toggleMute();
 }
