@@ -72,24 +72,12 @@
           <li class="status-blue">{{ user['name'] }}</li>
           {% endfor %}
         </ul>
-        <p>usuários disponíveis</p>
-        <ul>
-          {% for user in online_users %}
-          <li class="status-green">{{ user['name'] }}</li>
-          {% endfor %}
-        </ul>
+        <p>Usuários Disponiveis</p>
+        <ul id="online-users" class="onlineUsers"></ul>
+        <p>Usuários Offline</p>
+        <ul id="offline-users" class="offlineUsers"></ul>
         <p>usuários ocupados</p>
-        <ul>
-          {% for user in ocupado_users %}
-          <li class="status-red">{{ user['username'] }}</li>
-          {% endfor %}
-        </ul>
-        <p>usuários offline</p>
-        <ul>
-          {% for user in offline_users %}
-          <li class="status-gray">{{ user['name'] }}</li>
-          {% endfor %}
-        </ul>
+        <ul id="ocupado-users" class="ocupadoUsers"></ul>
       </div>
     </main>
     <script src="/static/index.js"></script>

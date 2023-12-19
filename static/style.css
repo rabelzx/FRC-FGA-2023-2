@@ -168,21 +168,21 @@ main .right ul li.status-blue::before {
 }
 
 /* Bolinha verde para o status "disponível" */
-main .right ul li.status-green::before {
+main .right .onlineUsers li::before {
   content: "\2022";
   color: rgb(58, 235, 58);
   margin-right: 5px;
 }
 
 /* Bolinha vermelha para o status "ocupado" */
-main .right ul li.status-red::before {
+main .right .ocupadoUsers li::before {
   content: "\2022";
   color: red;
   margin-right: 5px;
 }
 
 /* Bolinha cinza para o status "offline" */
-main .right ul li.status-gray::before {
+main .right .offlineUsers li::before {
   content: "\2022";
   color: gray;
   margin-right: 5px;
