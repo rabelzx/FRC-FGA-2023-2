@@ -67,11 +67,9 @@
       </div>
       <div class="right">
         <p class="initNone">usuários neste canal</p>
-        <ul class="userNone">
-          {% for user in user_list %}
-          <li class="status-blue">{{ user['name'] }}</li>
-          {% endfor %}
-        </ul>
+        <ul id="users-room1" class="users-room"></ul>
+        <ul id="users-room2" class="users-room"></ul>
+        <ul id="users-room3" class="users-room"></ul>
         <p>Usuários Disponiveis</p>
         <ul id="online-users" class="onlineUsers"></ul>
         <p>Usuários Offline</p>

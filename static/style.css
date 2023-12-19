@@ -154,17 +154,17 @@ main .right p {
   color: #ccc;
   font-size: 0.8em;
   font-weight: 600;
-  margin: 20px 0;
+  margin: 20px 0 10px 0;
 }
 
 main .right ul li {
   padding: 10px 0;
 }
 
-main .right ul li.status-blue::before {
-  content: "\2022"; /* Código Unicode para um ponto */
-  color: blue; /* Cor azul */
-  margin-right: 5px; /* Espaçamento entre a bolinha e o texto */
+main .right .users-room li::before {
+  content: "\2022"; 
+  color: rgb(63, 63, 222); 
+  margin-right: 5px; 
 }
 
 /* Bolinha verde para o status "disponível" */
