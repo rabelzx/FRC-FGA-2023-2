@@ -15,7 +15,7 @@ app.secret_key = 'your secret key'
   
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'password'
+app.config['MYSQL_PASSWORD'] = 'tigreazul21'
 app.config['MYSQL_DB'] = 'videoChatApp'
 
 rooms = {}
@@ -207,7 +207,7 @@ def handle_join_room(data):
 def emit_users():
     room_users = rooms[session['room']]['users']
     user_list = [{'id': username, 'name': username} for username in room_users]
-    emit('users', {'clients': user_list}, broadcast=True)
+    emit('users', {'clients': user_list, 'room': session['room'], 'room_users': list(room_users)}, broadcast=True)
   
 #chat de vídeo
 themes = {}

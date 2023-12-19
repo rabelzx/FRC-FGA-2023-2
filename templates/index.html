@@ -67,29 +67,15 @@
       </div>
       <div class="right">
         <p class="initNone">usuários neste canal</p>
-        <ul class="userNone">
-          {% for user in user_list %}
-          <li class="status-blue">{{ user['name'] }}</li>
-          {% endfor %}
-        </ul>
+        <ul id="users-room1" class="users-room"></ul>
+        <ul id="users-room2" class="users-room"></ul>
+        <ul id="users-room3" class="users-room"></ul>
         <p>usuários disponíveis</p>
-        <ul>
-          {% for user in online_users %}
-          <li class="status-green">{{ user['name'] }}</li>
-          {% endfor %}
-        </ul>
+        <ul></ul>
         <p>usuários ocupados</p>
-        <ul>
-          {% for user in ocupado_users %}
-          <li class="status-red">{{ user['username'] }}</li>
-          {% endfor %}
-        </ul>
+        <ul></ul>
         <p>usuários offline</p>
-        <ul>
-          {% for user in offline_users %}
-          <li class="status-gray">{{ user['name'] }}</li>
-          {% endfor %}
-        </ul>
+        <ul></ul>
       </div>
     </main>
     <script src="/static/index.js"></script>

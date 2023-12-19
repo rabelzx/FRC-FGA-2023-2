@@ -4,6 +4,21 @@ var clientId;
 socket.on("connect", function () {});
 
 socket.on("users", function (data) {
+  var ul;
+
+  console.log(data);
+
+  if (data.room === 'room1' || data.room === 'room2' || data.room === 'room3') {
+    ul = document.getElementById(`users-${data.room}`);
+    ul.innerHTML = ""; // Limpar a lista antes de adicionar usuários
+
+    data.room_users.forEach(function (client) {
+      var li = document.createElement("li");
+      li.appendChild(document.createTextNode(`${client}`));
+      ul.appendChild(li);
+    });
+  }
+
   var ul = document.getElementById("users");
   ul.innerHTML = "";
   data.clients.forEach(function (client) {
@@ -121,9 +136,6 @@ function changeRoom(channel) {
   var initDiv = document.querySelector('.initNone');
   initDiv.classList.toggle('active', true); 
 
-  var initUser = document.querySelector('.userNone');
-  initUser.classList.toggle('active', true); 
-
   //ocultar as outras ul tambem condicionalmente
   if(channel == 'room1'){
     var ul1 = document.getElementById("messages-room1");
@@ -131,6 +143,13 @@ function changeRoom(channel) {
     var ul2 = document.getElementById("messages-room2");
     ul2.style.display = "none";
     var ul3 = document.getElementById("messages-room3");
+    ul3.style.display = "none";
+
+    ul1 = document.getElementById("users-room1");
+    ul1.style.display = "block";
+    ul2 = document.getElementById("users-room2");
+    ul2.style.display = "none";
+    ul3 = document.getElementById("users-room3");
     ul3.style.display = "none";
   }
   if(channel == 'room2'){
@@ -140,6 +159,13 @@ function changeRoom(channel) {
     ul2.style.display = "block";
     var ul3 = document.getElementById("messages-room3");
     ul3.style.display = "none";
+
+    ul1 = document.getElementById("users-room1");
+    ul1.style.display = "none";
+    ul2 = document.getElementById("users-room2");
+    ul2.style.display = "block";
+    ul3 = document.getElementById("users-room3");
+    ul3.style.display = "none";
   }
   if(channel == 'room3'){
     var ul1 = document.getElementById("messages-room1");
@@ -148,7 +174,16 @@ function changeRoom(channel) {
     ul2.style.display = "none";
     var ul3 = document.getElementById("messages-room3");
     ul3.style.display = "block";
+
+    ul1 = document.getElementById("users-room1");
+    ul1.style.display = "none";
+    ul2 = document.getElementById("users-room2");
+    ul2.style.display = "none";
+    ul3 = document.getElementById("users-room3");
+    ul3.style.display = "block";
   }
+
+
   
   socket.emit("join_room", { room: channel });
 }
