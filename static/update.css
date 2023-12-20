@@ -5,67 +5,42 @@ body {
     margin: 0;
     padding: 0;
     color: white;
-}
-
-.one {
-    display: flex;
+    border: none;
+    border-radius: 0;
     background-color: #23272a;
-    height: 100vh;
-}
+    max-height: 100vh;
+    width: 100%;
+} 
 
-.two {
-    background-color: #23272a;
+.header {
     padding: 20px;
-    color: #fff;
-    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    color: white;   
 }
 
-.two h1 {
-    font-weight: 900;
-    font-size: 2em;
-    margin: 0;
-}
-
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-ul li {
-    margin-bottom: 15px;
-}
-
-ul li a {
+.header a{
+    color: white;   
     text-decoration: none;
-    color: #fff;
-    font-weight: 600;
-    font-size: 16px;
-    transition: color linear 160ms;
+    transition: all 0.3s ease-in-out;
 }
 
-ul li a:hover {
-    color: #58035e;
+.header a:hover{
+    color: #774185;   
+    text-decoration: none;
 }
 
-.content {
-    flex-grow: 1;
-}
-
-.topbar {
-    background-color: #23272a;
-    padding: 20px;
-    color: #fff;
-}
-
-.topbar h2 {
-    font-weight: 600;
-    font-size: 1.8em;
-    margin: 0;
+.content{ 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    width: 100%;
 }
 
 .contentbar {
     width: 20%;
-    background-color: #23272a;
     border-radius: 7px;
     padding: 40px;
     box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
@@ -94,12 +69,12 @@ ul li a:hover {
     padding: 15px;
     font-size: 14px;
     border: 1px solid #480ca8;
-    margin-bottom: 20px;
-    margin-top: 5px;
+    margin-bottom: 10px;
     border-radius: 4px;
     transition: border linear 160ms;
     outline: none;
     width: 100%;
+    cursor: pointer;
 }
 
 .contentbar input:focus,
@@ -116,8 +91,8 @@ ul li a:hover {
     padding: 15px;
     transition: background-color linear 160ms;
     cursor: pointer;
-    margin: 0 !important;
     width: 150px;
+    margin-top: 20px;
 }
 
 .btn:hover {

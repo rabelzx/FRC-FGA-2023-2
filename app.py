@@ -20,7 +20,6 @@ app.config['MYSQL_DB'] = 'videoChatApp'
 
 rooms = {}
   
-
 mysql = MySQL(app) 
 
 def criar_tabela():
@@ -60,7 +59,7 @@ def login():
             get_user_status()
             return render_template('index.html', msg=msg, chat=account['chat'])
         else:
-            msg = 'Incorrect username / password !'
+            msg = 'Usuário ou Senha incorretos !'
     
     return render_template('login.html', msg=msg)
   
@@ -103,9 +102,9 @@ def register():
             cursor.execute('INSERT INTO usuario (username, password, chat, status) VALUES (%s, %s, %s, %s)',
                            (username, password, chat, status))
             mysql.connection.commit()
-            msg = 'You have successfully registered!'
+            msg = 'Você foi registrado com sucesso!'
     elif request.method == 'POST':
-        msg = 'Please fill out the form!'
+        msg = 'Por favor, preencha os campos!'
 
     return render_template('register.html', msg=msg)
 
@@ -138,12 +137,12 @@ def display():
 def update():
     msg = ''
     if 'loggedin' in session:
-        if request.method == 'POST' and 'username' in request.form and 'password' in request.form \
-                and 'chat' in request.form and 'status' in request.form:
+        if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'chat' in request.form:
+
             username = request.form['username']
             password = request.form['password']
             chat = request.form['chat']
-            status = request.form['status']
+            status = 'Offline'
 
             cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
             cursor.execute('SELECT * FROM usuario WHERE username = %s', (username,))
@@ -151,15 +150,16 @@ def update():
 
             if account:
                 if not re.match(r'[A-Za-z0-9]+', username):
-                    msg = 'name must contain only characters and numbers !'
+                    msg = 'nome pode haver apenas caracteres e números!'
                 else:
                     cursor.execute(
                         'UPDATE usuario SET username = %s, password = %s, chat = %s, status = %s WHERE id = %s',
                         (username, password, chat, status, session['id']))
                     mysql.connection.commit()
-                    msg = 'You have successfully updated !'
+                    msg = 'As alterações foram efetuadas com sucesso!'
+                    return redirect(url_for('login',msg=msg))
         elif request.method == 'POST':
-            msg = 'Please fill out the form !'
+            msg = 'Por favor, preencha os campos!'
         return render_template("update.html", msg=msg)
     return redirect(url_for('login'))
 
