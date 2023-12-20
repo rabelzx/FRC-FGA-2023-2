@@ -20,7 +20,7 @@ app.config['MYSQL_DB'] = 'videoChatApp'
 
 rooms = {}
   
-  
+
 mysql = MySQL(app) 
 
 def criar_tabela():
@@ -58,7 +58,7 @@ def login():
             session['username'] = account['username']
             msg = 'Logged in successfully!'
             get_user_status()
-            return render_template('index.html', msg=msg)
+            return render_template('index.html', msg=msg, chat=account['chat'])
         else:
             msg = 'Incorrect username / password !'
     
