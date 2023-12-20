@@ -14,8 +14,9 @@ body {
 }
 
 .two {
+    font-size: larger;
     background-color: #23272a;
-    padding: 20px;
+    padding: 30px;
     color: #fff;
     text-align: center;
 }
@@ -64,12 +65,13 @@ ul li a:hover {
 }
 
 .contentbar {
-    width: 20%;
+    width: 15%;
     background-color: #23272a;
     border-radius: 7px;
     padding: 40px;
     box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
     text-align: center;
+    position: center;
 }
 
 .contentbar h1 {

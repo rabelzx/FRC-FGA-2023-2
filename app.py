@@ -15,7 +15,7 @@ app.secret_key = 'your secret key'
   
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'password'
+app.config['MYSQL_PASSWORD'] = '123456'
 app.config['MYSQL_DB'] = 'videoChatApp'
 
 rooms = {}
@@ -54,7 +54,7 @@ def login():
             msg = 'Logged in successfully !'
             return render_template('index.html', msg = msg) 
         else: 
-            msg = 'Incorrect username / password !'
+            msg = 'Usuário ou Senha incorretos!'
     return render_template('login.html', msg = msg) 
   
 @app.route('/logout') 
@@ -85,9 +85,9 @@ def register():
             cursor.execute('INSERT INTO usuario (username, password, chat, status) VALUES (%s, %s, %s, %s)',
                            (username, password, chat, status))
             mysql.connection.commit()
-            msg = 'You have successfully registered!'
+            msg = 'Você foi registrado com sucesso!'
     elif request.method == 'POST':
-        msg = 'Please fill out the form!'
+        msg = 'Por favor, preencha o formulário'
 
     return render_template('register.html', msg=msg)
 

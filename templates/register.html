@@ -3,26 +3,27 @@
 <head> 
     <meta charset="UTF-8"> 
     <title>Register</title> 
-    <link rel="stylesheet" href="../static/style.css">        
+    <link rel="stylesheet" href="static\lo\re\register.css">          
 </head> 
 <body> 
     <div class="registercontent" align="center"> 
         <div class="registertop"> 
-            <h1>Register</h1> 
-        </div></br></br> 
+            <h1>Registrar</h1> 
+        </div>
         <div class="registerbottom"> 
             <form action="{{ url_for('register')}}" method="post" autocomplete="off"> 
                 <div class="msg">{{ msg }}</div> 
-                <input type="text" name="username" placeholder="Enter Your Username" class="textbox" id="username" required></br></br> 
-                <input type="password" name="password" placeholder="Enter Your Password" class="textbox" id="password" required></br></br> 
-                <select name="chat" id="chat"> <!-- Adicionado o atributo name -->
-                    <option value="Chat">1. Utiliza somente chat</option>
-                    <option value="Video">2. Utiliza somente vídeo</option>
-                    <option value="Chat e Video">3. Utiliza ambos</option>
+                <input type="text" name="username" placeholder="Usuário" class="textbox" id="username" required><br><br> 
+                <input type="password" name="password" placeholder="Senha" class="textbox" id="password" required><br><br> 
+                <label for="chat">Escolha suas preferências:</label>
+                <select name="chat" id="chat" required>
+                    <option value="Chat">1. Apenas chat</option>
+                    <option value="Video">2. Apenas vídeo</option>
+                    <option value="ChatAndVideo">3.Utilizar ambos</option>
                 </select>
                 <input type="submit" class="btn" value="Register"> 
             </form> 
-            <p class="worddark">Already have an account? <a class="worddark" href="{{ url_for('login')}}">Login here</a></p> 
+            <p class="worddark">Já tem uma conta? <a class="worddark" href="{{ url_for('login')}}">Logar agora</a></p> 
         </div> 
     </div> 
 </body> 
