@@ -112,28 +112,29 @@ main .center-video {
   display: none;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 main .center-video.active {
   display: flex;
 }
 
-main .center-video .video-area {
+main .center-video .video-container {
   display: flex;
   gap: 20px;
 }
 
-main .center-video .video-area .local-video,
-main .center-video .video-area .remote-video {
+main .center-video .video-container .local-video,
+main .center-video .video-container .remote-video {
   text-align: center;
 }
 
-main .center-video .video-area video {
+main .center-video .video-container video {
   max-width: 370px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-main .center-video .video-area p {
+main .center-video .video-container p {
   text-transform: uppercase;
   color: #ccc;
   font-size: 0.8em;
@@ -153,36 +154,62 @@ main .right p {
   color: #ccc;
   font-size: 0.8em;
   font-weight: 600;
-  margin: 20px 0;
+  margin: 20px 0 10px 0;
 }
 
 main .right ul li {
   padding: 10px 0;
 }
 
-main .right ul li.status-blue::before {
-  content: "\2022"; /* Código Unicode para um ponto */
-  color: blue; /* Cor azul */
-  margin-right: 5px; /* Espaçamento entre a bolinha e o texto */
+main .right .users-room li::before {
+  content: "\2022"; 
+  color: rgb(63, 63, 222); 
+  margin-right: 5px; 
 }
 
 /* Bolinha verde para o status "disponível" */
-main .right ul li.status-green::before {
+main .right .onlineUsers li::before {
   content: "\2022";
   color: rgb(58, 235, 58);
   margin-right: 5px;
 }
 
 /* Bolinha vermelha para o status "ocupado" */
-main .right ul li.status-red::before {
+main .right .ocupadoUsers li::before {
   content: "\2022";
   color: red;
   margin-right: 5px;
 }
 
 /* Bolinha cinza para o status "offline" */
-main .right ul li.status-gray::before {
+main .right .offlineUsers li::before {
   content: "\2022";
   color: gray;
   margin-right: 5px;
+}
+
+main .center-init {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main .center-init.active {
+  display: none;
+}
+
+.initNone {
+  display: none;
+}
+
+.initNone.active {
+  display: inherit;
+}
+
+.userNone {
+  display: none;
+}
+
+.userNone.active {
+  display: inherit;
 }
