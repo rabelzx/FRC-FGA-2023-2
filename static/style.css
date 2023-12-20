@@ -130,16 +130,60 @@ main .center-video .video-container .remote-video {
 }
 
 main .center-video .video-container video {
-  max-width: 370px;
-  border-radius: 8px;
+  width: 410px;
+  border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 main .center-video .video-container p {
   text-transform: uppercase;
   color: #ccc;
   font-size: 0.8em;
   font-weight: 600;
   margin: 20px 0;
+}
+
+main .center-video .video-bar {
+  position: absolute;
+  bottom: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #23272a;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  gap: 20px;
+}
+
+main .center-video .video-bar button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+main .center-video .video-bar .join-button {
+  background-color: #29b943;
+}
+
+main .center-video .video-bar .leave-button {
+  background-color: #b92929;
+}
+
+main .center-video .video-bar .toggle-mic {
+  background-color: #a33ef0;
+}
+
+main .center-video .video-bar .toggle-cam {
+  background-color: #dcbb16;
+}
+
+main .center-video .video-bar button:hover {
+  background-color: #424549;
 }
 
 main .right {
@@ -162,27 +206,27 @@ main .right ul li {
 }
 
 main .right .users-room li::before {
-  content: "\2022"; 
-  color: rgb(63, 63, 222); 
-  margin-right: 5px; 
+  content: "\2022";
+  color: rgb(63, 63, 222);
+  margin-right: 5px;
 }
 
 /* Bolinha verde para o status "disponível" */
-main .right ul li.status-green::before {
+main .right .onlineUsers li::before {
   content: "\2022";
   color: rgb(58, 235, 58);
   margin-right: 5px;
 }
 
 /* Bolinha vermelha para o status "ocupado" */
-main .right ul li.status-red::before {
+main .right .ocupadoUsers li::before {
   content: "\2022";
   color: red;
   margin-right: 5px;
 }
 
 /* Bolinha cinza para o status "offline" */
-main .right ul li.status-gray::before {
+main .right .offlineUsers li::before {
   content: "\2022";
   color: gray;
   margin-right: 5px;

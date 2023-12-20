@@ -3,27 +3,35 @@
     <title>index</title>
     <link rel="stylesheet" href="../static/style.css" />
     <script src="https://cdn.socket.io/4.2.0/socket.io.js"></script>
-    
   </head>
   <body>
     <main>
       <div class="left">
         <div>
           <ul class="init-room">
-            <li value="room0" onclick="joinInit('room0')"">INICIO</li>
+            <li value="room0" onclick="joinInit('room0')">Início</li>
           </ul>
-          <p>Canais de texto</p>
-          <ul class="text-rooms">
-            <li value="room1" onclick="changeRoom('room1')">Jogos</li>
-            <li value="room2" onclick="changeRoom('room2')">Esportes</li>
-            <li value="room3" onclick="changeRoom('room3')">Programação</li>
-          </ul>
-          <p>Canais de vídeo</p>
-          <ul class="video-rooms">
-            <li value="room4" onclick="changeVideoRoom('room4')">Jogos</li>
-            <li value="room5" onclick="changeVideoRoom('room5')">Esportes</li>
-            <li value="room6" onclick="changeVideoRoom('room6')">Programação</li>
-          </ul>
+          {% if chat == "Chat" or chat == "Chat e Video" %}
+          <div class="text-section">
+            <p>Canais de texto</p>
+            <ul class="text-rooms">
+              <li value="room1" onclick="changeRoom('room1')">Jogos</li>
+              <li value="room2" onclick="changeRoom('room2')">Esportes</li>
+              <li value="room3" onclick="changeRoom('room3')">Programação</li>
+            </ul>
+          </div>
+          {% endif %} {% if chat == "Video" or chat == "Chat e Video" %}
+          <div class="video-section">
+            <p>Canais de vídeo</p>
+            <ul class="video-rooms">
+              <li value="room4" onclick="changeVideoRoom('room4')">Jogos</li>
+              <li value="room5" onclick="changeVideoRoom('room5')">Esportes</li>
+              <li value="room6" onclick="changeVideoRoom('room6')">
+                Programação
+              </li>
+            </ul>
+          </div>
+          {% endif %}
         </div>
         <div class="logout">
           <a href="{{ url_for('update') }}">meu perfil</a>
@@ -59,10 +67,18 @@
           </div>
         </div>
         <div class="video-bar">
-          <button onclick="joinVideoRoom()">Entrar na chamada</button>
-          <button onclick="leaveVideoRoom()">Sair da chamada</button>
-          <button onclick="toggleMute()">Ligar/Desligar microfone</button>
-          <button onclick="toggleCamera()">Ligar/Desligar câmera</button>
+          <button onclick="joinVideoRoom()" class="join-button">
+            Entrar na chamada
+          </button>
+          <button onclick="leaveVideoRoom()" class="leave-button">
+            Sair da chamada
+          </button>
+          <button onclick="toggleMute()" class="toggle-mic">
+            Ligar/Desligar microfone
+          </button>
+          <button onclick="toggleCamera()" class="toggle-cam">
+            Ligar/Desligar câmera
+          </button>
         </div>
       </div>
       <div class="right">
@@ -70,12 +86,12 @@
         <ul id="users-room1" class="users-room"></ul>
         <ul id="users-room2" class="users-room"></ul>
         <ul id="users-room3" class="users-room"></ul>
-        <p>usuários disponíveis</p>
-        <ul></ul>
+        <p>Usuários Disponiveis</p>
+        <ul id="online-users" class="onlineUsers"></ul>
+        <p>Usuários Offline</p>
+        <ul id="offline-users" class="offlineUsers"></ul>
         <p>usuários ocupados</p>
-        <ul></ul>
-        <p>usuários offline</p>
-        <ul></ul>
+        <ul id="ocupado-users" class="ocupadoUsers"></ul>
       </div>
     </main>
     <script src="/static/index.js"></script>
