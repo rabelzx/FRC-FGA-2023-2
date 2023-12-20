@@ -121,8 +121,8 @@ def index():
         # Converter os resultados para um formato JSON
         user_list = [{'id': user['id'], 'name': user['username']} for user in users]
         print("Users:", user_list)  # Adicione este print para verificar a lista de usuários
-        online_users, offline_users = get_user_status()
-        return render_template("index.html", users=user_list, online_user=online_users, offline_users=offline_users)  
+        get_user_status()
+        return render_template("index.html", users=user_list)  
     return redirect(url_for('login')) 
   
 @app.route("/display") 
