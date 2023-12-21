@@ -223,17 +223,23 @@ def emit_users():
 
 def get_user_status():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute('SELECT username, status FROM usuario')
+    
+    # Get user status
+    cursor.execute('SELECT username, status, chat FROM usuario')
     users = cursor.fetchall()
-    print("Users from DB:", users)  # Adicione este print
+    
     online_users = [user['username'] for user in users if user['status'] == 'online']
     offline_users = [user['username'] for user in users if user['status'] == 'offline']
     ocupado_users = [user['username'] for user in users if user['status'] == 'ocupado']
-    print("Online Users:", online_users)  # Adicione este print
-    print("Offline Users:", offline_users)  # Adicione este print
-    print("Ocupado:", ocupado_users)
-    socketio.emit('update_user_list', {'online_users': online_users, 'offline_users': offline_users, 'ocupado_users': ocupado_users})
-  
+
+    chat_users = [user['username'] for user in users if user['chat'] == 'Chat']
+    video_users = [user['username'] for user in users if user['chat'] == 'Video']
+    chat_video_users = [user['username'] for user in users if user['chat'] == 'Chat e Video']
+
+    # Emitir atualizações para o cliente usando o socketio
+    socketio.emit('update_user_list', {'online_users': online_users, 'offline_users': offline_users, 'ocupado_users': ocupado_users
+                                       , 'chat_users': chat_users, 'video_users': video_users, 'chat_video_users': chat_video_users})
+
 #chat de vídeo
 themes = {}
 

@@ -382,25 +382,45 @@
     var onlineUsersList = document.getElementById("online-users");
     var offlineUsersList = document.getElementById('offline-users');
     var ocupadoUsersList = document.getElementById('ocupado-users');
-
+    
     onlineUsersList.innerHTML = "";
     data.online_users.forEach(function (user) {
       var li = document.createElement("li");
-      li.appendChild(document.createTextNode(`${user}`));
+      if(data.chat_users.includes(user)){
+        li.appendChild(document.createTextNode(`${user} - Texto`));  // Corrigido aqui
+      } else if(data.video_users.includes(user)){
+        li.appendChild(document.createTextNode(`${user} - Vídeo`));  // Corrigido aqui
+      } else {
+        li.appendChild(document.createTextNode(`${user} - Texto e vídeo`));  // Corrigido aqui
+      }
       onlineUsersList.appendChild(li);  // Corrigido aqui
     });
 
     offlineUsersList.innerHTML = "";
+
     data.offline_users.forEach(function (user) {
-      var li = document.createElement("li");
-      li.appendChild(document.createTextNode(`${user}`));  // Corrigido aqui
+      var li = document.createElement("li"); 
+      if(data.chat_users.includes(user)){
+        li.appendChild(document.createTextNode(`${user} - Texto`));  // Corrigido aqui
+      } else if(data.video_users.includes(user)){
+        li.appendChild(document.createTextNode(`${user} - Vídeo`));  // Corrigido aqui
+      } else {
+        li.appendChild(document.createTextNode(`${user} - Texto e vídeo`));  // Corrigido aqui
+      }
+
       offlineUsersList.appendChild(li);  // Corrigido aqui
     });
 
     ocupadoUsersList.innerHTML = "";
     data.ocupado_users.forEach(function (user) {
       var li = document.createElement("li");
-      li.appendChild(document.createTextNode(`${user}`));  // Corrigido aqui
+      if(data.chat_users.includes(user)){
+        li.appendChild(document.createTextNode(`${user} - Texto`));  // Corrigido aqui
+      } else if(data.video_users.includes(user)){
+        li.appendChild(document.createTextNode(`${user} - Vídeo`));  // Corrigido aqui
+      } else {
+        li.appendChild(document.createTextNode(`${user} - Texto e vídeo`));  // Corrigido aqui
+      }
       ocupadoUsersList.appendChild(li);  // Corrigido aqui
     });
   });

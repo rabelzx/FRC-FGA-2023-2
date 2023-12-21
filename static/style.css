@@ -205,6 +205,10 @@ main .right ul li {
   padding: 10px 0;
 }
 
+main .right ul li {
+ font-size: 14px;
+}
+
 main .right .users-room li::before {
   content: "\2022";
   color: rgb(63, 63, 222);
