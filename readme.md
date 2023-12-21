@@ -31,7 +31,7 @@ Recursos para exportar ou salvar o histórico de chat.
 
 ## Video de apresetação
 
-https://www.youtube.com/watch?v=SzvQlCdPtmc
+https://youtu.be/lOklpzbkSkw?si=PsPD_HMepMoEkHDw
 
 ## Screenshots
 
