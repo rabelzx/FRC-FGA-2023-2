@@ -37,7 +37,7 @@ Recursos para exportar ou salvar o histórico de chat.
 
 ## Video de apresetação
 
-<iframe width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/watch?v=SzvQlCdPtmc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## Instalação 
 **Linguagem**: Python e MySQL<br>
