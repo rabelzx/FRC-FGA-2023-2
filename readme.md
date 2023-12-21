@@ -29,15 +29,15 @@ Controles de Privacidade e Moderação:
 * Registro de Atividades e Histórico de Chat: Registro de atividades para salas de chat, permitindo a revisão de mensagens antigas.
 Recursos para exportar ou salvar o histórico de chat.
 
+## Video de apresetação
+
+https://www.youtube.com/watch?v=SzvQlCdPtmc
+
 ## Screenshots
 
 ![image](https://github.com/rabelzx/video-chat-app/assets/79341819/00f36451-6f1e-474a-9db4-063402cfa561)
 ![image](https://github.com/rabelzx/video-chat-app/assets/79341819/d3f6ca2e-df54-4432-9a8b-b07e79d3825b)
 ![image](https://github.com/rabelzx/video-chat-app/assets/79341819/f5405e29-ee76-4c14-9673-98620d107f74)
-
-## Video de apresetação
-
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=SzvQlCdPtmc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## Instalação 
 **Linguagem**: Python e MySQL<br>
